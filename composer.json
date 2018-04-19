@@ -1,7 +1,6 @@
 {
   "name": "duzhenlin/imap",
   "description": "map WebService API",
-  "type": "project",
   "license": "MIT",
   "authors": [
     {

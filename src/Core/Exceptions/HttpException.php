@@ -1,13 +1,11 @@
 <?php
 /**
- * HttpException.php.
- *
- * @author    overtrue <i@overtrue.me>
- * @copyright 2015 overtrue <i@overtrue.me>
- *
- * @link      https://github.com/overtrue
- * @link      http://overtrue.me
+ * Created by PhpStorm.
+ * User: duzhenlin
+ * Date: 2018/4/19
+ * Time: 13:22
  */
+
 
 namespace IMap\Core\Exceptions;
 

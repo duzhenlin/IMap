@@ -28,11 +28,12 @@ class QQMap extends AbstractAPI
     /**
      *
      */
-    const GEOCODER_LOCATION = 'http://apis.map.qq.com/ws/geocoder/v1/?location';
+    const GEOCODER_LOCATION_URL = 'http://apis.map.qq.com/ws/geocoder/v1/?location';
     /**
      *
      */
-    const GEOCODER_ADDRESS = 'http://apis.map.qq.com/ws/geocoder/v1';
+    const GEOCODER_ADDRESS_URL = 'http://apis.map.qq.com/ws/geocoder/v1';
+    const DISTANCE_URL = 'http://apis.map.qq.com/ws/distance/v1/';
     /**
      * @var
      */
@@ -48,6 +49,30 @@ class QQMap extends AbstractAPI
     }
 
     /**
+     * 计算距离
+     * @param $from
+     * @param $to
+     * @param string $mode
+     * @return \IMap\Core\Collection
+     * @throws \IMap\Core\Exceptions\HttpException
+     */
+    public function distance($from, $to, $mode = 'driving')
+    {
+        $params = [
+            'mode' => $mode,
+            'to' => $to,
+            'from' => $from,
+            'key' => $this->key,
+        ];
+        return $this->parseJSON('json', [self::GEOCODER_ADDRESS_URL, $params]);
+    }
+
+    public function search()
+    {
+
+    }
+
+    /**
      * @param $address
      * @return \IMap\Core\Collection
      * @throws \IMap\Core\Exceptions\HttpException
@@ -58,6 +83,6 @@ class QQMap extends AbstractAPI
             'address' => $address,
             'key' => $this->key,
         ];
-        return $this->parseJSON('json', [self::GEOCODER_ADDRESS, $params]);
+        return $this->parseJSON('json', [self::GEOCODER_ADDRESS_URL, $params]);
     }
 }

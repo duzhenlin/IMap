@@ -28,7 +28,7 @@ class QQMap extends AbstractAPI
     /**
      * 逆地址解析（坐标转地址）
      */
-    const GEOCODER_LOCATION_URL = 'http://apis.map.qq.com/ws/geocoder/v1/?location';
+    const GEOCODER_LOCATION_URL = 'http://apis.map.qq.com/ws/geocoder/v1';
     /**
      * 地址解析（地址转坐标）
      */
@@ -127,12 +127,38 @@ class QQMap extends AbstractAPI
         return $this->parseJSON('get', [self::DISTANCE_URL, $params]);
     }
 
+
     /**
      * 地点搜索（search接口）
+     * @param $keyword
+     * @param $boundary
+     * @param int $page_size
+     * @param int $page_index
+     * @param bool $filter
+     * @param bool $orderby
+     * @return \IMap\Core\Collection
+     * @throws \IMap\Core\Exceptions\HttpException
+     *
+     * http://lbs.qq.com/webservice_v1/guide-search.html#boundary_detail
+     * http://lbs.qq.com/webservice_v1/guide-search.html#filter_detail
+     * http://lbs.qq.com/webservice_v1/guide-search.html#orderby_detail
      */
-    public function search()
+    public function search($keyword, $boundary, $page_index = 1, $page_size = 20, $filter = false, $orderby = false)
     {
-
+        $params = [
+            'keyword' => $keyword,
+            'boundary' => $boundary,
+            'page_index' => $page_index,
+            'page_size' => $page_size,
+            'key' => $this->key,
+        ];
+        if ($filter) {
+            $params['filter'] = $filter;
+        }
+        if ($orderby) {
+            $params['orderby'] = $orderby;
+        }
+        return $this->parseJSON('get', [self::PLACE_SEARCH_URL, $params]);
     }
 
 

@@ -131,7 +131,7 @@ class QQMap extends AbstractAPI
      */
     public function search()
     {
-       
+
     }
 
 

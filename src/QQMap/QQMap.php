@@ -18,22 +18,33 @@ use IMap\Core\AbstractAPI;
 class QQMap extends AbstractAPI
 {
     /**
-     *
+     * 地点搜索（search接口）
      */
     const PLACE_SEARCH_URL = 'http://apis.map.qq.com/ws/place/v1/search';
     /**
-     *
+     * 关键字的补完与提示
      */
     const PLACE_SUGGESTION_URL = 'http://apis.map.qq.com/ws/place/v1/suggestion';
     /**
-     *
+     * 逆地址解析（坐标转地址）
      */
     const GEOCODER_LOCATION_URL = 'http://apis.map.qq.com/ws/geocoder/v1/?location';
     /**
-     *
+     * 地址解析（地址转坐标）
      */
     const GEOCODER_ADDRESS_URL = 'http://apis.map.qq.com/ws/geocoder/v1';
-    const DISTANCE_URL = 'http://apis.map.qq.com/ws/distance/v1/';
+    /**
+     * 计算距离
+     */
+    const DISTANCE_URL = 'http://apis.map.qq.com/ws/distance/v1';
+    /**
+     * ip定位
+     */
+    const LOCATION_IP_URL = 'http://apis.map.qq.com/ws/location/v1/ip';
+    /**
+     * 坐标转换
+     */
+    const COORD_TRANSLATE_URL = 'http://apis.map.qq.com/ws/coord/v1/translate';
     /**
      * @var
      */
@@ -46,6 +57,54 @@ class QQMap extends AbstractAPI
     public function __construct($key)
     {
         $this->key = $key;
+    }
+
+    /**
+     * 地址解析（地址转坐标）
+     * @param $address
+     * @return \IMap\Core\Collection
+     * @throws \IMap\Core\Exceptions\HttpException
+     */
+    public function address($address)
+    {
+        $params = [
+            'address' => $address,
+            'key' => $this->key,
+        ];
+        return $this->parseJSON('get', [self::GEOCODER_ADDRESS_URL, $params]);
+    }
+    /**
+     * 逆地址解析（坐标转地址）
+     * @param $location
+     * @param int $coord_type
+     * @param int $get_poi
+     * @return \IMap\Core\Collection
+     * @throws \IMap\Core\Exceptions\HttpException
+     */
+    public function location($location, $coord_type = 5, $get_poi = 0)
+    {
+        $params = [
+            'location' => $location,
+            'coord_type' => $coord_type,
+            'get_poi' => $get_poi,
+            'key' => $this->key,
+        ];
+        return $this->parseJSON('get', [self::GEOCODER_LOCATION_URL, $params]);
+    }
+
+    /**
+     * ip定位
+     * @param $ip
+     * @return \IMap\Core\Collection
+     * @throws \IMap\Core\Exceptions\HttpException
+     */
+    public function fromIp($ip)
+    {
+        $params = [
+            'ip' => $ip,
+            'key' => $this->key,
+        ];
+        return $this->parseJSON('get', [self::LOCATION_IP_URL, $params]);
     }
 
     /**
@@ -64,25 +123,16 @@ class QQMap extends AbstractAPI
             'from' => $from,
             'key' => $this->key,
         ];
-        return $this->parseJSON('json', [self::DISTANCE_URL, $params]);
-    }
-
-    public function search()
-    {
-
+        return $this->parseJSON('get', [self::DISTANCE_URL, $params]);
     }
 
     /**
-     * @param $address
-     * @return \IMap\Core\Collection
-     * @throws \IMap\Core\Exceptions\HttpException
+     * 地点搜索（search接口）
      */
-    public function address($address)
+    public function search()
     {
-        $params = [
-            'address' => $address,
-            'key' => $this->key,
-        ];
-        return $this->parseJSON('json', [self::GEOCODER_ADDRESS_URL, $params]);
+       
     }
+
+
 }

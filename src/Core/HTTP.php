@@ -57,6 +57,7 @@ class HTTP
      * @param $url
      * @param array $options
      * @return mixed|ResponseInterface
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function get($url, array $options = [])
     {
@@ -69,6 +70,7 @@ class HTTP
      * @param $url
      * @param array $options
      * @return mixed|ResponseInterface
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function post($url, $options = [])
     {
@@ -77,12 +79,14 @@ class HTTP
         return $this->request($url, 'POST', [$key => $options]);
     }
 
+
     /**
      * JSON request.
      * @param $url
      * @param array $options
      * @param int $encodeOption
      * @return mixed|ResponseInterface
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function json($url, $options = [], $encodeOption = JSON_UNESCAPED_UNICODE)
     {
@@ -99,6 +103,7 @@ class HTTP
      * @param array $form
      * @param array $queries
      * @return mixed|ResponseInterface
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function upload($url, array $files = [], array $form = [], array $queries = [])
     {
@@ -175,6 +180,7 @@ class HTTP
      * @param string $method
      * @param array $options
      * @return mixed|ResponseInterface
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function request($url, $method = 'GET', $options = [])
     {
@@ -202,9 +208,6 @@ class HTTP
             $body = $body->getBody();
         }
 
-        // XXX: json maybe contains special chars. So, let's FUCK the WeChat API developers ...
-        $body = $this->fuckTheWeChatInvalidJSON($body);
-
         if (empty($body)) {
             return false;
         }
@@ -218,16 +221,6 @@ class HTTP
         return $contents;
     }
 
-    /**
-     * Filter the invalid JSON string.
-     *
-     * @param  \Psr\Http\Message\StreamInterface|string $invalidJSON
-     * @return string
-     */
-    protected function fuckTheWeChatInvalidJSON($invalidJSON)
-    {
-        return preg_replace("/\p{Cc}/u", '', trim($invalidJSON));
-    }
 
     /**
      * Build a handler.

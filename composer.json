@@ -15,6 +15,7 @@
     "symfony/http-foundation": "^4.0"
 
   },
+  "minimum-stability" : "dev",
   "autoload": {
     "psr-4": {
       "IMap\\": "src/"

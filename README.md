@@ -1,7 +1,13 @@
 # IMap
 IMap
 
-qq地图WebService API实现
+##安装方式
+
+``
+composer require duzhenlin/imap
+``
+
+####qq地图WebService API实现
 ````
   $config = [
         'qq' => [
@@ -17,4 +23,4 @@ qq地图WebService API实现
     $app->QQMap->fromIp('22.22.22.22');
   ````
   
-  后期会增加百度，高德api
+  ###后期会增加百度，高德api

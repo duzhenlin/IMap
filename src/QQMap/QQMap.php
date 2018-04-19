@@ -73,6 +73,7 @@ class QQMap extends AbstractAPI
         ];
         return $this->parseJSON('get', [self::GEOCODER_ADDRESS_URL, $params]);
     }
+
     /**
      * 逆地址解析（坐标转地址）
      * @param $location
@@ -98,12 +99,12 @@ class QQMap extends AbstractAPI
      * @return \IMap\Core\Collection
      * @throws \IMap\Core\Exceptions\HttpException
      */
-    public function fromIp($ip)
+    public function fromIp($ip = false)
     {
-        $params = [
-            'ip' => $ip,
-            'key' => $this->key,
-        ];
+        $params = ['key' => $this->key];
+        if ($ip) {
+            $params['ip'] = $ip;
+        }
         return $this->parseJSON('get', [self::LOCATION_IP_URL, $params]);
     }
 

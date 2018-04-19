@@ -10,6 +10,10 @@ namespace IMap\Core;
 
 use Exception as BaseException;
 
+/**
+ * Class Exception
+ * @package IMap\Core
+ */
 class Exception extends BaseException
 {
 

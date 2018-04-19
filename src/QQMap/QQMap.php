@@ -64,7 +64,7 @@ class QQMap extends AbstractAPI
             'from' => $from,
             'key' => $this->key,
         ];
-        return $this->parseJSON('json', [self::GEOCODER_ADDRESS_URL, $params]);
+        return $this->parseJSON('json', [self::DISTANCE_URL, $params]);
     }
 
     public function search()

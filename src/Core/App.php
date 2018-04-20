@@ -36,7 +36,7 @@ class App extends Container
         }
         $this->registerProviders();
         $this->registerBase();
-        Http::setDefaultOptions($this['config']->get('guzzle', ['timeout' => 5.0]));
+        HTTP::setDefaultOptions($this['config']->get('guzzle', ['timeout' => 5.0]));
     }
 
     /**

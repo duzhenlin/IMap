@@ -20,31 +20,31 @@ class QQMap extends AbstractAPI
     /**
      * 地点搜索（search接口）
      */
-    const PLACE_SEARCH_URL = 'http://apis.map.qq.com/ws/place/v1/search';
+    const PLACE_SEARCH_URL = 'https://apis.map.qq.com/ws/place/v1/search';
     /**
      * 关键字的补完与提示
      */
-    const PLACE_SUGGESTION_URL = 'http://apis.map.qq.com/ws/place/v1/suggestion';
+    const PLACE_SUGGESTION_URL = 'https://apis.map.qq.com/ws/place/v1/suggestion';
     /**
      * 逆地址解析（坐标转地址）
      */
-    const GEOCODER_LOCATION_URL = 'http://apis.map.qq.com/ws/geocoder/v1';
+    const GEOCODER_LOCATION_URL = 'https://apis.map.qq.com/ws/geocoder/v1';
     /**
      * 地址解析（地址转坐标）
      */
-    const GEOCODER_ADDRESS_URL = 'http://apis.map.qq.com/ws/geocoder/v1';
+    const GEOCODER_ADDRESS_URL = 'https://apis.map.qq.com/ws/geocoder/v1';
     /**
      * 计算距离
      */
-    const DISTANCE_URL = 'http://apis.map.qq.com/ws/distance/v1';
+    const DISTANCE_URL = 'https://apis.map.qq.com/ws/distance/v1';
     /**
      * ip定位
      */
-    const LOCATION_IP_URL = 'http://apis.map.qq.com/ws/location/v1/ip';
+    const LOCATION_IP_URL = 'https://apis.map.qq.com/ws/location/v1/ip';
     /**
      * 坐标转换
      */
-    const COORD_TRANSLATE_URL = 'http://apis.map.qq.com/ws/coord/v1/translate';
+    const COORD_TRANSLATE_URL = 'https://apis.map.qq.com/ws/coord/v1/translate';
     /**
      * @var
      */
